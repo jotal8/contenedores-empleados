@@ -1,0 +1,53 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+      MYSQL_USER: jotal8
+      MYSQL_PASSWORD: holamundo
+      MYSQL_DATABASE: project
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      PMA_ARBITRARY: 1
+
+  app-server:
+    build:
+      context: ./app-server
+    container_name: app-server
+    restart: always
+    environment:
+      TZ: America/Bogota
+    ports:
+      - "80:80"
+      - "2222:22"
+    volumes:
+     - project_code:/var/www/html
+    depends_on:
+      - mysql
+    
+  send-email:
+    build:
+      context: ./email-service 
+    container_name: send-email
+    restart: always
+    ports:
+      - "5000:5000"
+    volumes:
+     - project_email:/app
+
+volumes:
+  project_code:
+  mysql_data:
+  project_email:
