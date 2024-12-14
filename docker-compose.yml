@@ -30,8 +30,7 @@ services:
     environment:
       TZ: America/Bogota
     ports:
-      - "80:80"
-      - "3000:3000"
+      - "3001:80"
       - "2222:22"
     volumes:
      - project_code:/var/www/html
@@ -48,7 +47,16 @@ services:
     volumes:
      - project_email:/app
 
+  website:
+    image: blueriver/nextjs 
+    container_name: website
+    restart: always
+    ports:
+      - "80:3000"
+    volumes:
+     - project_website:/app
 volumes:
   project_code:
   mysql_data:
   project_email:
+  project_website:
