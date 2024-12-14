@@ -1,7 +1,7 @@
 services:
-  mysql:
+  db-server:
     image: mysql:8.0
-    container_name: mysql
+    container_name: db-server
     restart: always
     ports:
       - "3306:3306"
@@ -31,6 +31,7 @@ services:
       TZ: America/Bogota
     ports:
       - "80:80"
+      - "3000:3000"
       - "2222:22"
     volumes:
      - project_code:/var/www/html
