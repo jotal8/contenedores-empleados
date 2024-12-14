@@ -3,7 +3,7 @@ FROM python:latest
 WORKDIR /app
 COPY . /app
 
-RUN pip install --no-cache-dir Flask==2.3.3 Flask-RESTful==0.3.9 Flask-Cors==3.0.10
+RUN pip install --no-cache-dir Flask==2.3.3 Flask-RESTful==0.3.9 Flask-Cors==3.0.10 pyjwt python-dotenv Flask-Mail
 
 ENV FLASK_ENV=development
 
