@@ -36,7 +36,7 @@ services:
     volumes:
      - project_code:/var/www/html
     depends_on:
-      - mysql
+      - db-server
     
   email-service:
     build:
