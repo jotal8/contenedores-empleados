@@ -36,35 +36,15 @@ RUN curl -sL https://deb.nodesource.com/setup_20.x | bash -
 
 # Se Instala las librerias necesarias
 RUN apt-get install -y vim
-RUN apt-get install -y libexif-dev #exif
-RUN apt-get install -y libicu-dev #intl
-RUN apt-get install -y libxml2-dev #soap
-RUN apt-get install -y zlib1g-dev libzip-dev #zip
-RUN apt-get install -y libldap2-dev #ldap
-RUN apt-get install -y libc-client-dev libkrb5-dev #imap
-RUN apt-get install -y libgd-dev libfreetype6-dev libjpeg62-turbo-dev libpng-dev #GD
-RUN apt-get install -y unzip libaio1 #OCI
 
 # Instala las dependencias necesarias
-RUN docker-php-ext-install exif intl soap zip pdo pdo_mysql mysqli
-
-# Configura e instala las extensiones de LDAP
-RUN docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ && \
-    docker-php-ext-install ldap
-
-# Configura e instala las extensiones de IMAP
-RUN docker-php-ext-configure imap --with-kerberos --with-imap-ssl && \
-    docker-php-ext-install imap
-
-## Configura e instala las extensiones de GD
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg && \
-    docker-php-ext-install -j$(nproc) gd
+RUN docker-php-ext-install exif pdo pdo_mysql mysqli
 
 # Instala SSH
 RUN apt-get update && \
     apt-get install -y openssh-server && \
     mkdir /var/run/sshd && \
-    echo 'root:saia' | chpasswd && \
+    echo 'root:holamundo2024' | chpasswd && \
     sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config && \
     sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config && \
     sed -i 's/#ListenAddress 0.0.0.0/ListenAddress 0.0.0.0/' /etc/ssh/sshd_config
@@ -93,8 +73,3 @@ COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
 CMD ["/usr/local/bin/entrypoint.sh"]
-
-
-
-
-

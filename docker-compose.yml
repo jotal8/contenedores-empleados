@@ -48,11 +48,13 @@ services:
      - project_email:/app
 
   website:
-    image: blueriver/nextjs 
+    build: 
+      context: ./website 
     container_name: website
     restart: always
     ports:
       - "80:3000"
+      - "2200:22"
     volumes:
      - project_website:/app
 volumes:
