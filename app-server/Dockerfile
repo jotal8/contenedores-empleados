@@ -72,4 +72,6 @@ COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 # Asegúrate de que el script sea ejecutable
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
+RUN git clone https://github.com/jotal8/empleados /var/www/html/project
+
 CMD ["/usr/local/bin/entrypoint.sh"]

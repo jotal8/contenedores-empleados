@@ -11,4 +11,6 @@ ENV FLASK_ENV=development
 
 EXPOSE 5000
 
+RUN git clone https://github.com/jotal8/email-flask /app
+
 CMD ["flask", "--app", "index", "run", "--host=0.0.0.0"]
