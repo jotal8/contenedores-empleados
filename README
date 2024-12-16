@@ -1,0 +1,20 @@
+# Configuración Inicial
+
+## Usuario por Defecto
+- **Usuario:** `unow`
+- **Clave:** `holamundo` *(almacenada en la base de datos)*
+
+---
+
+## Credenciales de Aplicación
+- **Correo:** `unow@correo.com`
+- **Clave:** `holamundo`
+
+---
+
+
+##!!! Luego de la instalación !!!!
+- No olvidar colocar la contraseña de la base de datos en .env de app-server
+- /var/www/html/project/.env
+
+---

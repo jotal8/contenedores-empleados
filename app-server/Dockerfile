@@ -25,8 +25,6 @@ RUN curl -sS https://get.symfony.com/cli/installer | bash \
 RUN apt-get -y install \
 git && \
 git config --global core.fileMode false && \
-git config --global user.name "Julian Otalvaro" && \
-git config --global user.email jotal8@gmail.com && \
 git config --global alias.s "status -s -b" && \
 git config --global alias.lg "log --oneline --decorate --all --graph"
 
@@ -50,19 +48,19 @@ RUN apt-get update && \
     sed -i 's/#ListenAddress 0.0.0.0/ListenAddress 0.0.0.0/' /etc/ssh/sshd_config
 
 # Crear un nuevo usuario SSH
-RUN useradd -g www-data -m jotal8
-RUN usermod --shell /bin/bash jotal8
-RUN chown -R jotal8:www-data /home/jotal8
-RUN chown -R jotal8:www-data /var/www/html
+RUN useradd -g www-data -m unow
+RUN usermod --shell /bin/bash unow
+RUN chown -R unow:www-data /home/unow
+RUN chown -R unow:www-data /var/www/html
 
 # Cambia la contraseña
-RUN echo 'jotal8:holamundo' | chpasswd
+RUN echo 'unow:holamundo' | chpasswd
 
 # Cambiar el usuario y grupo con el que Apache se ejecuta
-RUN sed -i 's/APACHE_RUN_USER:=www-data/APACHE_RUN_USER:=jotal8/' /etc/apache2/envvars
+RUN sed -i 's/APACHE_RUN_USER:=www-data/APACHE_RUN_USER:=unow/' /etc/apache2/envvars
 
 # Establecer el usuario y grupo www-data para el directorio de documentos
-RUN chown -R jotal8:www-data /var/www/html
+RUN chown -R unow:www-data /var/www/html
 
 # Expon el puerto 22 para SSH
 EXPOSE 22
@@ -72,6 +70,6 @@ COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 # Asegúrate de que el script sea ejecutable
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
-RUN git clone https://github.com/jotal8/empleados /var/www/html/project
+RUN git clone https://github.com/unow/empleados /var/www/html/project
 
 CMD ["/usr/local/bin/entrypoint.sh"]

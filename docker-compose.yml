@@ -7,7 +7,7 @@ services:
       - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
-      MYSQL_USER: jotal8
+      MYSQL_USER: unow
       MYSQL_PASSWORD: holamundo
       MYSQL_DATABASE: project
     volumes:
