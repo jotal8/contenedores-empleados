@@ -13,8 +13,24 @@
 ---
 
 
+## Ingreso a contenedor
+- `ssh unow@localhost -p XXX` <- aqui va el puerto 2222 para backend 2200 fronted
+- **Clave:** `holamundo`
+- para ingresar a email-service  `docker exec -it email-service sh`
+
+---
+
+
 ##!!! Luego de la instalación !!!!
 - No olvidar colocar la contraseña de la base de datos en .env de app-server
 - /var/www/html/project/.env
 
+---
+
+
+
+##!!! PARA CONFIGURAR EMAIL !!!!
+- Se debe ingresar a configuración de gmail
+- https://myaccount.google.com/u/0/apppasswords  -> para adicionar una contraseña para la aplicacion externa
+- Luego configurarla en el .env de email-service
 ---
