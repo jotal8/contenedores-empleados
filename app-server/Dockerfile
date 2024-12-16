@@ -30,7 +30,7 @@ git config --global alias.lg "log --oneline --decorate --all --graph"
 
 # Se instala Node.js versión 20
 RUN curl -sL https://deb.nodesource.com/setup_20.x | bash -
-    RUN apt-get install -y nodejs
+RUN apt-get install -y nodejs
 
 # Se Instala las librerias necesarias
 RUN apt-get install -y vim
@@ -71,7 +71,5 @@ COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
 RUN git clone https://github.com/unow/empleados /var/www/html/project
-RUN /var/www/html/project/bin/console doctrine:schema:create
-RUN /var/www/html/project/bin/console app:install:initialData
 
 CMD ["/usr/local/bin/entrypoint.sh"]

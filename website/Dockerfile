@@ -26,7 +26,5 @@ CMD ["sh", "-c", "npm run dev & /usr/sbin/sshd -D"]
 
 WORKDIR /app
 
-RUN 
-
 EXPOSE 22
 EXPOSE 3000

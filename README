@@ -20,7 +20,11 @@
 
 ---
 
-##!!! PARA CONFIGURAR EMAIL !!!!
+##!!! SE REQUIERE CONFIGURAR LO SIGUIENTE: !!!!
+- Ingresar al servidor backend y ejecutar:
+- /var/www/html/project/bin/console doctrine:schema:create
+- /var/www/html/project/bin/console app:install:initialData
+- Luego
 - Se debe ingresar a configuración de gmail
 - https://myaccount.google.com/u/0/apppasswords  -> para adicionar una contraseña para la aplicacion externa
 - Luego configurarla en el .env de email-service
