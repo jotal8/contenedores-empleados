@@ -71,5 +71,7 @@ COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
 RUN git clone https://github.com/unow/empleados /var/www/html/project
+RUN /var/www/html/project/bin/console doctrine:schema:create
+RUN /var/www/html/project/bin/console app:install:initialData
 
 CMD ["/usr/local/bin/entrypoint.sh"]

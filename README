@@ -20,17 +20,6 @@
 
 ---
 
-
-##!!! Luego de la instalación !!!!
-- No olvidar colocar la contraseña de la base de datos en .env de app-server
-- /var/www/html/project/.env
-- luego ejecutar este comando para inicializar datos: 
-- /var/www/html/project/bin/console doctrine:schema:create
-- /var/www/html/project/bin/console app:install:initialData
----
-
-
-
 ##!!! PARA CONFIGURAR EMAIL !!!!
 - Se debe ingresar a configuración de gmail
 - https://myaccount.google.com/u/0/apppasswords  -> para adicionar una contraseña para la aplicacion externa
