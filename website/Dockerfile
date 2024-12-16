@@ -18,13 +18,13 @@ RUN adduser -D -g "users" jotal8 && \
     echo 'jotal8:holamundo' | chpasswd && \
     chown -R jotal8:users /app
 
+RUN rm -rf /app
+
 RUN git clone https://github.com/jotal8/website_empleados /app
 
 CMD ["sh", "-c", "npm run dev & /usr/sbin/sshd -D"]
 
 WORKDIR /app
-
-
 
 RUN 
 
