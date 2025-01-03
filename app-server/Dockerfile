@@ -8,9 +8,12 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 COPY virtualhost.conf /etc/apache2/sites-available/virtualhost.conf
 COPY php.ini /usr/local/etc/php/php.ini
 
+
 RUN a2ensite virtualhost.conf;
 RUN a2enmod rewrite headers
 RUN a2dissite 000-default.conf
+
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
 RUN apt-get update && \
     apt-get upgrade -y
@@ -62,14 +65,15 @@ RUN sed -i 's/APACHE_RUN_USER:=www-data/APACHE_RUN_USER:=unow/' /etc/apache2/env
 # Establecer el usuario y grupo www-data para el directorio de documentos
 RUN chown -R unow:www-data /var/www/html
 
-# Expon el puerto 22 para SSH
+RUN git clone https://github.com/jotal8/empleados /var/www/html/project && \
+    chown -R unow:www-data /var/www/html/project && \
+    su unow -c "cd /var/www/html/project && composer install --no-scripts" && \
+    /var/www/html/project/bin/console doctrine:schema:create && \
+    /var/www/html/project/bin/console app:install:initialData
+
+# Exponer el puerto 22 para SSH y 80 para Apache
 EXPOSE 22
+EXPOSE 80
 
-# Copia el script de entrada al contenedor
-COPY entrypoint.sh /usr/local/bin/entrypoint.sh
-# Asegúrate de que el script sea ejecutable
-RUN chmod +x /usr/local/bin/entrypoint.sh
-
-RUN git clone https://github.com/unow/empleados /var/www/html/project
-
-CMD ["/usr/local/bin/entrypoint.sh"]
+# Comando final
+CMD service ssh start && apache2-foreground

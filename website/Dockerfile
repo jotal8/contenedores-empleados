@@ -21,8 +21,10 @@ RUN adduser -D -g "users" jotal8 && \
 RUN rm -rf /app
 
 RUN git clone https://github.com/jotal8/website_empleados /app
+RUN npm install
+RUN npm run build
 
-CMD ["sh", "-c", "npm run dev & /usr/sbin/sshd -D"]
+CMD ["sh", "-c", "npm run start & /usr/sbin/sshd -D"]
 
 WORKDIR /app
 
