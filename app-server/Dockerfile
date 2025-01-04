@@ -2,6 +2,10 @@ FROM php:7.4-apache
 
 RUN mkdir -p /var/www/html
 
+COPY start.sh /usr/local/bin/start.sh
+
+RUN chmod +x /usr/local/bin/start.sh
+
 ENV TZ=America/Bogota
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
@@ -67,13 +71,11 @@ RUN chown -R unow:www-data /var/www/html
 
 RUN git clone https://github.com/jotal8/empleados /var/www/html/project && \
     chown -R unow:www-data /var/www/html/project && \
-    su unow -c "cd /var/www/html/project && composer install --no-scripts" && \
-    /var/www/html/project/bin/console doctrine:schema:create && \
-    /var/www/html/project/bin/console app:install:initialData
+    su unow -c "cd /var/www/html/project && composer install --no-scripts"
 
 # Exponer el puerto 22 para SSH y 80 para Apache
 EXPOSE 22
 EXPOSE 80
 
 # Comando final
-CMD service ssh start && apache2-foreground
+CMD ["/usr/local/bin/start.sh"]
