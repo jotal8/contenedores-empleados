@@ -14,18 +14,13 @@
 
 
 ## Ingreso a contenedor
-- `ssh unow@localhost -p XXX` <- aqui va el puerto 2222 para backend 2200 fronted
+- `ssh unow@localhost -p 2222`
+- `ssh jotal8@localhost -p 2200`
 - **Clave:** `holamundo`
 - para ingresar a email-service  `docker exec -it email-service sh`
 
 ---
 
-##!!! SE REQUIERE CONFIGURAR LO SIGUIENTE: !!!!
-- Ingresar al servidor backend y ejecutar:
-- /var/www/html/project/bin/console doctrine:schema:create
-- /var/www/html/project/bin/console app:install:initialData
-- Luego
-- Se debe ingresar a configuración de gmail
+- Si tienes inconvenientes con Gmail debes ingresar con tu cuenta a la siguiente página:
 - https://myaccount.google.com/u/0/apppasswords  -> para adicionar una contraseña para la aplicacion externa
-- Luego configurarla en el .env de email-service
----
+- Luego configurarla en el .env de email-service 
