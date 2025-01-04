@@ -1,13 +1,18 @@
 # Configuración Inicial
 
-## Usuario por Defecto
+## Usuario Administrador  db
 - **Usuario:** `unow`
-- **Clave:** `holamundo` *(almacenada en la base de datos)*
+- **Clave:** `holamundo`
 
 ---
 
 ## Credenciales de Aplicación
+- ADMINISTRADOR
 - **Correo:** `unow@correo.com`
+- **Clave:** `holamundo`
+
+- USUARIO
+- **Correo:** `usuario@correo.com`
 - **Clave:** `holamundo`
 
 ---
@@ -21,6 +26,6 @@
 
 ---
 
-- Si tienes inconvenientes con Gmail debes ingresar con tu cuenta a la siguiente página:
+- Si tienes inconvenientes con la configuración de Gmail debes ingresar con tu cuenta a la siguiente página:
 - https://myaccount.google.com/u/0/apppasswords  -> para adicionar una contraseña para la aplicacion externa
 - Luego configurarla en el .env de email-service 
