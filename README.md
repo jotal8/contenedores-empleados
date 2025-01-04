@@ -13,12 +13,12 @@ Ejecutar el siguiente comando para configurar la contraseña de root de MySQL:
 Levantar los contenedores con Docker: 
 
 
-#Instalación nueva 
+# Instalación nueva 
 Sólo en caso de no haber realizado el intento de instalación previamente:
 
 - docker-compose up -d
 
-#Reinstalación: 
+# Reinstalación: 
 Sólo si se ejecutó los comandos de creación de imagen y contenedores anteriormente
 
 Eliminar los contenedores previamente instalados:
