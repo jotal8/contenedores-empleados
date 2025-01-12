@@ -2,10 +2,6 @@ FROM php:7.4-apache
 
 RUN mkdir -p /var/www/html
 
-COPY start.sh /usr/local/bin/start.sh
-
-RUN chmod +x /usr/local/bin/start.sh
-
 ENV TZ=America/Bogota
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
@@ -76,6 +72,10 @@ RUN git clone https://github.com/jotal8/empleados /var/www/html/project && \
 # Exponer el puerto 22 para SSH y 80 para Apache
 EXPOSE 22
 EXPOSE 80
+
+COPY start.sh /usr/local/bin/start.sh
+RUN chmod +x /usr/local/bin/start.sh
+RUN chown unow:www-data /usr/local/bin/start.sh
 
 # Comando final
 CMD ["/usr/local/bin/start.sh"]
